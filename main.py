@@ -1,16 +1,28 @@
-# This is a sample Python script.
+from source import inventory, product
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+if __name__ == "__main__":
+    # Create products
+    product1 = product.Product("Appl", 2.9, 5)
+    product2 = product.Product("Banana", 5.66, 10)
+    product3 = product.Product("Watermelon", 25.2, 7)
 
+    # Create inventory instance and products to inventory
+    inventory = inventory.Inventory()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    # Add product to inventory
+    inventory.add_product(product1)
+    inventory.add_product(product2)
+    inventory.add_product(product3)
 
+    # Retrieve and display a product
+    product = inventory.get_product("Appl")
+    print(product if product else "Product not found.")
+    product = inventory.get_product("Mengo")
+    print(product if product else "Product not found.")
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    # Remove a product and display inventory value
+    print(inventory.total_inventory_value())
+    inventory.remove_product("Keyboard")
+    print("Total inventory value:", inventory.total_inventory_value())
+    inventory.remove_product("Appl")
+    print("Total inventory value:", inventory.total_inventory_value())
